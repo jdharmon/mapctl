@@ -1,0 +1,17 @@
+{
+  "name": "mapctl",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "version:sync": "scripts/generate-version.sh",
+    "mapctl": "pnpm -s version:sync && swift package clean && swift run mapctl",
+    "start": "pnpm -s mapctl",
+    "format": "swift format --in-place --recursive Sources Tests",
+    "lint": "swift format lint --recursive Sources Tests && DYLD_FRAMEWORK_PATH=\"$(xcode-select -p)/usr/lib\" swiftlint --strict && shellcheck -x scripts/*.sh",
+    "test": "pnpm -s version:sync && scripts/swift-test.sh --enable-code-coverage",
+    "coverage": "scripts/check-coverage.sh",
+    "check": "pnpm -s lint && pnpm -s test && pnpm -s coverage",
+    "clean": "swift package clean",
+    "build": "pnpm -s version:sync && mkdir -p bin && swift build -c release --product mapctl && cp .build/release/mapctl bin/mapctl && codesign --force --sign - --identifier com.jdharmon.mapctl bin/mapctl"
+  }
+}
