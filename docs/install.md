@@ -1,6 +1,6 @@
 ---
 title: Install
-description: "Building mapctl from source, code signing, and shell completion."
+description: "Building mapctl from source, code signing, shell completion, and installing the agent skill."
 ---
 
 ## Requirements
@@ -50,6 +50,24 @@ mapctl completion bash > /usr/local/etc/bash_completion.d/mapctl
 ```
 
 Restart the shell afterwards.
+
+## Agent skill
+
+`SKILL.md` at the repo root documents `mapctl` for agents — when to use it, which command answers which question, and where MapKit's limits are.
+
+```bash
+openclaw skills install --global --as apple-maps <path-to-source>
+```
+
+| Part | Meaning |
+| --- | --- |
+| `<path-to-source>` | This repo's root, the directory containing `SKILL.md` |
+| `--global` | Install into the shared managed skills directory rather than one workspace |
+| `--as apple-maps` | Pin the slug, so the skill is addressable by name regardless of the source directory |
+
+Install the binary on `PATH` first. The skill only tells an agent how to drive `mapctl`; it does not bundle it.
+
+Re-running the command after editing `SKILL.md` may need `--force`; see `openclaw skills install --help` for the current flags.
 
 ## Development
 

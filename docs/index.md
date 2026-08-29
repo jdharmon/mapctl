@@ -31,7 +31,7 @@ mapctl doctor
 ## Where to go next
 
 - [Commands](commands.md) — full command and option reference
-- [Install](install.md) — building, signing, and shell completion
+- [Install](install.md) — building, signing, shell completion, and the agent skill
 - [Limits](limits.md) — what MapKit does and does not expose
 
 ## Limits

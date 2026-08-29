@@ -16,6 +16,16 @@ cp bin/mapctl /usr/local/bin/
 
 `make build` produces an ad-hoc codesigned release binary in `bin/`.
 
+## Agent skill
+
+`SKILL.md` at the repo root teaches an agent when and how to reach for `mapctl`. Install it globally with:
+
+```bash
+openclaw skills install --global --as apple-maps <path-to-source>
+```
+
+`<path-to-source>` is this repo's root — the directory holding `SKILL.md`. `--global` installs into the shared managed skills directory; `--as apple-maps` fixes the slug so the skill is addressable by name regardless of the directory it came from. Install `mapctl` on `PATH` first: the skill drives the binary and is useless without it.
+
 ## Requirements
 
 - macOS 26 or newer
